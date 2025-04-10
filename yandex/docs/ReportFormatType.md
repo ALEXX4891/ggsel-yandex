@@ -1,0 +1,12 @@
+# Api.ReportFormatType
+
+## Enum
+
+
+* `FILE` (value: `"FILE"`)
+
+* `CSV` (value: `"CSV"`)
+
+* `JSON` (value: `"JSON"`)
+
+

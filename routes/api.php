@@ -30,3 +30,4 @@ Route::get('/notification', [NotificationController::class, 'index']);
     // Route::get('logout', [AuthController::class, 'logout']);
 // });
 
+yandex-market-partner-api/openapi/openapi.yaml
