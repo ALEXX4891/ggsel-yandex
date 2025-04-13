@@ -12,13 +12,14 @@ ini_set('error_append_string', '</pre>');
 error_reporting(E_ALL);
 // mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-require __DIR__.'/../marketintegration/vendor/autoload.php';
+require __DIR__ . '/../marketintegration/vendor/autoload.php';
 
-$configFile = __DIR__.'/../config/config.php';
+$configFile =  include __DIR__ . '/../config/config.php';
+
 $alp_key = $configFile['yandex']['Api-Key'];
 $clientId = $configFile['yandex']['clientId'];
-// $businessId = $configFile['yandex']['businessId'];
-// $campaignId = $configFile['yandex']['campaignId'];
+$campaign_id = $configFile['yandex']['campaignId']; // int | Идентификатор кампании. Чтобы узнать идентификаторы, воспользуйтесь запросом [GET campaigns](../../reference/campaigns/getCampaigns.md#businessdto).  ℹ️ [Что такое кабинет и магазин на Маркете](https://yandex.ru/support/marketplace/account/introduction.html)
+// $business_id = $configFile['yandex']['businessId']; // int | Идентификатор кабинета. Чтобы узнать идентификатор, воспользуйтесь запросом [GET campaigns](../../reference/campaigns/getCampaigns.md#businessdto).  ℹ️ [Что такое кабинет и магазин на Маркете](https://yandex.ru/support/marketplace/account/introduction.html)
 
 echo 'Done1' . '<br>';
 
@@ -45,8 +46,6 @@ $apiInstance = new OpenAPI\Client\Api\CampaignsApi(
     new GuzzleHttp\Client(),
     $config
 );
-// $business_id = $configFile['yandex']['businessId']; // int | Идентификатор кабинета. Чтобы узнать идентификатор, воспользуйтесь запросом [GET campaigns](../../reference/campaigns/getCampaigns.md#businessdto).  ℹ️ [Что такое кабинет и магазин на Маркете](https://yandex.ru/support/marketplace/account/introduction.html)
-$campaign_id = $configFile['yandex']['campaignId']; // int | Идентификатор кампании. Чтобы узнать идентификаторы, воспользуйтесь запросом [GET campaigns](../../reference/campaigns/getCampaigns.md#businessdto).  ℹ️ [Что такое кабинет и магазин на Маркете](https://yandex.ru/support/marketplace/account/introduction.html)
 // $page_token = ''; // $page_token = 'eyBuZXh0SWQ6IDIzNDIgfQ=='; // string | Идентификатор страницы c результатами.  Если параметр не указан, возвращается первая страница.  Рекомендуется передавать значение выходного параметра `nextPageToken`, полученное при последнем запросе.  Если задан `page_token` и в запросе есть параметры `page_number` и `page_size`, они игнорируются.
 // $limit = 60; // int | Количество значений на одной странице. Минимум 50!!!
 echo 'Done3' . '<br>';
