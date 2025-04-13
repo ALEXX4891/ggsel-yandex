@@ -35,7 +35,7 @@ $apiInstance = new OpenAPI\Client\Api\BidsApi(
 );
 $business_id = 188540397; // int | Идентификатор кабинета. Чтобы узнать идентификатор, воспользуйтесь запросом [GET campaigns](../../reference/campaigns/getCampaigns.md#businessdto).  ℹ️ [Что такое кабинет и магазин на Маркете](https://yandex.ru/support/marketplace/account/introduction.html)
 $page_token = 'eyBuZXh0SWQ6IDIzNDIgfQ=='; // string | Идентификатор страницы c результатами.  Если параметр не указан, возвращается первая страница.  Рекомендуется передавать значение выходного параметра `nextPageToken`, полученное при последнем запросе.  Если задан `page_token` и в запросе есть параметры `page_number` и `page_size`, они игнорируются.
-$limit = 20; // int | Количество значений на одной странице.
+$limit = 60; // int | Количество значений на одной странице.
 echo 'Done3' . '<br>';
 $get_bids_info_request = new \OpenAPI\Client\Model\GetBidsInfoRequest(); // \OpenAPI\Client\Model\GetBidsInfoRequest | description
 
