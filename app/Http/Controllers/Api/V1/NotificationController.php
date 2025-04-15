@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Notification;
 use App\Http\Requests\StoreNotificationRequest;
 use App\Http\Requests\UpdateNotificationRequest;
+use DateTime;
+use DateTimeZone;
 
 class NotificationController extends Controller
 {
@@ -21,7 +23,7 @@ class NotificationController extends Controller
         return response()->json([
             'version' => '1.0.0',
             'name' => 'name',
-            'time' => date("F j, Y, g:i a"),
+            'time' => new DateTime('now', new DateTimeZone('UTC')),
         ], 200);
     }
 
