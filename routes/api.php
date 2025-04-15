@@ -23,7 +23,7 @@ Route::get('/user', function (Request $request) {
 //     // Route::get('logout', [AuthController::class, 'logout']);
 
 // });
-Route::get('/notification', [NotificationController::class, 'index']);
+Route::post('/notification', [NotificationController::class, 'index']);
 
 // Route::prefix('v1')->middleware(['throttle:myApi', 'auth:sanctum'])->group(function () {
     // Route::apiResource('posts', PostController::class);
