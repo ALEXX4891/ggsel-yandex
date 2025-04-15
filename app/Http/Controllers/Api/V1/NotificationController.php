@@ -19,8 +19,9 @@ class NotificationController extends Controller
         // return response()->json($data, 200);
 
         return response()->json([
-            'name' => 'PING',  // или другой тип, который пришел в запросе
-            'code' => 'OK',    // или 'ERROR', если что-то пошло не так
+            'version' => '1.0.0',
+            'name' => 'name',
+            'time' => date("F j, Y, g:i a"),
         ], 200);
     }
 
