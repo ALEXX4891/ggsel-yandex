@@ -20,8 +20,8 @@ class NotificationController extends Controller
 
         return response()->json([
             'version' => '1.0.0',
-            'name' => 'name',
-            'time' => '2025-04-15T17:37:59.622Z',
+            'name' => request()->input('notificationType'),
+            'time' => request()->input('time'),
         ], 200);
     }
 
