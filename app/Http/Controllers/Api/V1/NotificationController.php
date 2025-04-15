@@ -21,7 +21,7 @@ class NotificationController extends Controller
         return response()->json([
             'version' => '1.0.0',
             'name' => 'name',
-            'time' => date("Y-m-d H:i:s"),
+            'time' => '2025-04-15T17:37:59.622Z',
         ], 200);
     }
 
