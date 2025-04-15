@@ -15,8 +15,13 @@ class NotificationController extends Controller
     public function index()
     {
         // return 'Hello World';
-        $data = request()->all();
-        return response()->json($data, 200);
+        // $data = request()->all();
+        // return response()->json($data, 200);
+
+        return response()->json([
+            'name' => 'PING',  // или другой тип, который пришел в запросе
+            'code' => 'OK',    // или 'ERROR', если что-то пошло не так
+        ], 200);
     }
 
     /**
