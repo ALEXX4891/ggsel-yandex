@@ -14,13 +14,9 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        return 'Hello World';
-        // return response()->json([
-        //     'message' => 'Hello World',
-        //     'data' => 'Hello World',
-        //     'status' => 'success',
-        //     'code' => 200,
-        // ]);
+        // return 'Hello World';
+        $data = request()->all();
+        return response()->json($data, 200);
     }
 
     /**
