@@ -23,6 +23,10 @@ return Application::configure(basePath: dirname(__DIR__))
             AddLinkHeadersForPreloadedAssets::class,
         ]);
     })
+    ->withMiddleware(function (Middleware $middleware) {
+        // Добавьте эту строку:
+        $middleware->alias(['checkIp' => \App\Http\Middleware\CheckIpMiddleware::class]);
+    })
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
