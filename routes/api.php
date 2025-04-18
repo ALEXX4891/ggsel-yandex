@@ -24,6 +24,8 @@ Route::get('/user', function (Request $request) {
 
 // });
 Route::post('/notification', [NotificationController::class, 'index'])->middleware('checkIp');
+// Route::post('/notification', [NotificationController::class, 'index']);
+
 
 // Route::prefix('v1')->middleware(['throttle:myApi', 'auth:sanctum'])->group(function () {
     // Route::apiResource('posts', PostController::class);

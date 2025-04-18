@@ -9,12 +9,6 @@ use Symfony\Component\HttpFoundation\Response;
 class CheckIpMiddleware
 {
 
-    // Разрешенные IP-адреса
-    protected $allowedIps = [
-        explode(',', env('ALLOWED_IP_RANGES')),
-        // '127.0.0.1',    // Для локального тестирования
-    ];
-
 
     /**
      * Handle an incoming request.
@@ -23,10 +17,14 @@ class CheckIpMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $allowedIps = [
+            explode(',', env('ALLOWED_IP_RANGES')),
+            // '127.0.0.1',    // Для локального тестирования
+        ];
         // Получаем IP-адрес клиента
         $clientIp = $request->ip();
         // Проверяем, разрешен ли IP-адрес
-        if (!in_array($clientIp, $this->allowedIps)) {
+        if (!in_array($clientIp, $allowedIps)) {
             return response()->json(['error' => 'Access denied'], 403);
         }
         return $next($request);

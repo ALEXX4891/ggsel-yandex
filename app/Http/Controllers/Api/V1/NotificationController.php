@@ -22,6 +22,7 @@ class NotificationController extends Controller
             'version' => '1.0.0',
             'name' => request()->input('notificationType'),
             'time' => request()->input('time'),
+            'ip' => request()->ip(),
         ], 200);
     }
 
