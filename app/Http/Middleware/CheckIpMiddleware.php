@@ -26,7 +26,7 @@ class CheckIpMiddleware
         // Проверяем, разрешен ли IP-адрес
         foreach ($allowedRanges as $range) {
             if (!IpUtils::checkIp($clientIp, $range)) {
-                return response()->json(['error' => 'Access denied'], 403);
+                return response()->json(['ip' => $clientIp ,'error' => 'Access denied'], 403);
             }
         }
         return $next($request);
