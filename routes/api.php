@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\V1\NotificationController;
+// use App\Http\Controllers\Api\V1\NotificationController;
+// use App\Http\Controllers\WebNotificationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,8 +24,10 @@ Route::get('/user', function (Request $request) {
 //     // Route::get('logout', [AuthController::class, 'logout']);
 
 // });
-Route::post('/notification', [NotificationController::class, 'index'])->middleware('checkIp');
+// Route::post('/notification', [NotificationController::class, 'index'])->middleware('checkIp');
 // Route::post('/notification', [NotificationController::class, 'index']);
+
+// Route::post('/notification', [WebNotificationController::class, 'index'])->middleware('checkIp');
 
 
 // Route::prefix('v1')->middleware(['throttle:myApi', 'auth:sanctum'])->group(function () {
