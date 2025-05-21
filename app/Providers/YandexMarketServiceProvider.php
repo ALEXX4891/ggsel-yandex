@@ -14,8 +14,8 @@ class YandexMarketServiceProvider extends ServiceProvider
         // });
 
         $this->app->singleton(
-            \App\Services\YandexMarketService::class,
-            fn () => new \App\Services\YandexMarketService()
+            YandexMarketService::class,
+            fn () => new YandexMarketService()
         );
     }
 }
