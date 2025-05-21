@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'yandex_market' => [
+        'client_id' => env('YANDEX_MARKET_CLIENT_ID'),
+        'business_id' => env('YANDEX_MARKET_BUSINESS_ID'),
+        'campaign_id' => env('YANDEX_MARKET_CAMPAIGN_ID'),
+        'api_key' => env('YANDEX_MARKET_API_KEY'),
+    ],
+
 ];

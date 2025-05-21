@@ -3,59 +3,47 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-// use App\Models\Notification;
-// use App\Http\Requests\StoreNotificationRequest;
-// use App\Http\Requests\UpdateNotificationRequest;
+use App\Jobs\ProcessYandexOrderNotification;
+use App\Services\YandexMarketService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
+// return response()->json([
+    //     'version' => '1.0.0',
+    //     'name' => request()->input('notificationType'),
+//     'time' => request()->input('time'),
+//     'ip' => request()->ip(),
+// ], 200);
 
 class WebNotificationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(
+        protected YandexMarketService $marketService
+    ) {}
+
     public function index()
     {
-        // return 'Hello World';
-        // $data = request()->all();
-
-        // return response()->json($data, 200);
-
-        return response()->json([
-            'version' => '1.0.0',
-            'name' => request()->input('notificationType'),
-            'time' => request()->input('time'),
-            'ip' => request()->ip(),
-        ], 200);
+        $service = new YandexMarketService();
+        // ... остальной код
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreNotificationRequest $request)
-    {
-        //
-    }
+    // public function index(Request $request)
+    // {
+    //     Log::info('Received notification:', $request->all());
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Notification $notification)
-    {
-        //
-    }
+    //     if ($this->isValidOrderNotification($request)) {
+    //         ProcessYandexOrderNotification::dispatch(
+    //             $request->input('order_id'),
+    //             $request->all()
+    //         )->onQueue('notifications');
+    //     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateNotificationRequest $request, Notification $notification)
-    {
-        //
-    }
+    //     return response()->json(['status' => 'queued']);
+    // }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Notification $notification)
+    protected function isValidOrderNotification(Request $request): bool
     {
-        //
+        return $request->has('order_id') &&
+            $request->input('event') === 'ORDER_CREATED';
     }
 }

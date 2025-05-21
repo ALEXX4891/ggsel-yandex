@@ -8,6 +8,10 @@ use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
 
 return Application::configure(basePath: dirname(__DIR__))
+    ->withProviders()
+    ->withSingletons([
+        YandexMarketService::class => YandexMarketService::class,
+    ])
     ->withRouting(
         web: __DIR__ . '/../routes/web.php',
         api: __DIR__ . '/../routes/api.php',
@@ -27,9 +31,6 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->validateCsrfTokens(except: [
             'notification',
         ]);
-    })
-    ->withMiddleware(function (Middleware $middleware) {
-        // Добавьте эту строку:
         $middleware->alias(['checkIp' => \App\Http\Middleware\CheckIpMiddleware::class]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
