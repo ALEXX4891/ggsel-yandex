@@ -44,9 +44,8 @@ class YandexMarketService
             return $this->handleResponse($response);
         } catch (\Exception $e) {
             Log::error('YandexMarket API Error: ' . $e->getMessage());
-            return $this->handleResponse($response);
 
-            // return null;
+            return [$e->getMessage()];
         }
     }
 
