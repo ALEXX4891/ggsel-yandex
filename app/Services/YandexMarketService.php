@@ -36,7 +36,7 @@ class YandexMarketService
     {
         try {
             $response = Http::withHeaders([
-                'Authorization' => $this->generateAuthHeader(),
+                'Api-Key' => $this->generateAuthHeader(),
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
             ])->get($this->getOrderUrl($orderId));
@@ -59,7 +59,8 @@ class YandexMarketService
      */
     protected function generateAuthHeader(): string
     {
-        return "Api-Key: {$this->apiKey}";
+        // return "OAuth oauth_api_key=\"{$this->apiKey}\", oauth_client_id=\"{$this->campaignId}\"";
+        return $this->apiKey;
         // return "OAuth oauth_api_key=\"{$this->apiKey}\", oauth_client_id=\"{$this->campaignId}\"";
 
     }
