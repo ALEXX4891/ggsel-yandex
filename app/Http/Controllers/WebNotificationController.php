@@ -17,13 +17,25 @@ use Illuminate\Support\Facades\Log;
 
 class WebNotificationController extends Controller
 {
+
     public function __construct(
         protected YandexMarketService $marketService
     ) {}
 
-    public function index()
+    public function index(Request $request)
     {
+        Log::info('Received notification:', $request->all());
+        // if ($this->isValidOrderNotification($request)) {
+        //     ProcessYandexOrderNotification::dispatch(
+        //         $request->input('order_id'),
+        //         $request->all()
+        //     )->onQueue('notifications');
+        // }
         $service = new YandexMarketService();
+        $order = $service->getOrder(
+            $request->input('order_id')
+        );
+        return response()->json($order);
         // ... остальной код
     }
 
