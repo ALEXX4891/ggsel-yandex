@@ -41,12 +41,6 @@ class YandexMarketService
                 'Content-Type' => 'application/json',
             ])->get($this->getOrderUrl($orderId));
 
-            if ($response->failed()) {
-                Log::debug('YandexMarket query: ' . $response->body());
-                Log::error('YandexMarket API Error: ' . $response->body());
-                return null;
-            }
-
             return $this->handleResponse($response);
         } catch (\Exception $e) {
             Log::error('YandexMarket API Error: ' . $e->getMessage());
@@ -59,7 +53,7 @@ class YandexMarketService
      */
     protected function generateAuthHeader(): string
     {
-        return "API-Key=\"{$this->apiKey}\"";
+        return "Api-Key: {$this->apiKey}";
         // return "OAuth oauth_api_key=\"{$this->apiKey}\", oauth_client_id=\"{$this->campaignId}\"";
 
     }
