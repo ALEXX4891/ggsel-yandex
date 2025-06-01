@@ -40,17 +40,13 @@ class YandexMarketService
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
             ])->get($this->getOrderUrl($orderId));
-            // return response()->json(request()->headers->all());
-            Log::info('YandexMarket API Request:', [
-                'headers' => request()->headers->all(),
-                'response' => $response->json(),
-            ]);
-
 
             return $this->handleResponse($response);
         } catch (\Exception $e) {
             Log::error('YandexMarket API Error: ' . $e->getMessage());
-            return null;
+            return $this->handleResponse($response);
+
+            // return null;
         }
     }
 
