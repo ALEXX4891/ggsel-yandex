@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\ProcessYandexOrderNotification;
+use App\Jobs\ProcessTestNotification;
+
 use App\Services\YandexMarketService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -29,9 +31,22 @@ class WebNotificationController extends Controller
                 $request->input('order_id'),
                 $request->all()
             )->onQueue('notifications');
+
+            // Log::info('Received notification:', $request->all());
+            // $service = new YandexMarketService();
+            // $order = $service->getOrder(
+            //     $request->input('order_id')
+            // );
+            // return response()->json($order);
         }
 
         if ($this->isValidPingNotification($request)) {
+            // ProcessTestNotification::dispatch(
+            //     $request->input('notificationType'),
+            //     $request->all()
+            // )->onQueue('notifications');
+
+
             $data = $request->all();
             $data['notificationType'] = 'PONG';
             $data['time'] = now()->toDateTimeString();
@@ -42,21 +57,20 @@ class WebNotificationController extends Controller
         }
 
         if ($this->isValidTestNotification($request)) {
-            $data = $request->all();
-            $data['time'] = now()->toDateTimeString();
-            $data['name'] = 'NinjaGang';
-            $data['version'] = 1.0;
-            return response()->json($data
-            , 200);
+            ProcessTestNotification::dispatch(
+                $request->input('notificationType'),
+                $request->all()
+            )->onQueue('test');
+            // return response()->json(['status' => 'queued']);
+            // $data = $request->all();
+            // $data['time'] = now()->toDateTimeString();
+            // $data['name'] = 'NinjaGang';
+            // $data['version'] = 1.0;
+            // return response()->json($data
+            // , 200);
         }
 
 
-        Log::info('Received notification:', $request->all());
-        $service = new YandexMarketService();
-        $order = $service->getOrder(
-            $request->input('order_id')
-        );
-        return response()->json($order);
         // ... остальной код
     }
 

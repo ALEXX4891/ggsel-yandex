@@ -11,29 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create(table: 'orders', callback: function (Blueprint $table): void {
             $table->id();
-            $table->json('shop');
-            $table->string('buyer');
-            $table->decimal('buyerItemsTotalBeforeDiscount', total: 10, places: 2);
-            $table->string('creationDate');
-            $table->json('currency');
-            $table->json('delivery');
-            $table->decimal('deliveryTotal', total: 10, places: 2);
-            $table->boolean('fake');
-            $table->integer('ordersId');
-            $table->json('items');
-            $table->decimal('itemsTotal', total: 10, places: 2);
-            $table->json('paymentMethod');
-            $table->json('paymentType');
-            $table->json('status');
-            $table->json('substatus');
-            $table->json('taxSystem');
-            $table->boolean('cancelRequested');
-            $table->string('expiryDate');
-            $table->string('notes');
-            $table->json('subsidies');
-            $table->string('updatedAt');
+            $table->string(column: 'order_number')->unique();
+            $table->string(column: 'shop');
+            $table->string(column: 'customer_name');
+            $table->string(column: 'customer_email');
+            $table->decimal(column: 'total_amount', total: 10, places: 2);
+            $table->string(column: 'creation_date');
+            $table->string(column: 'currency');
+            $table->boolean(column: 'fake')->default(value: false);
+            $table->text(column: 'items')->nullable();
+            $table->decimal(column: 'items_total', total: 10, places: 2);
+            $table->string(column: 'payment_method');
+            $table->string(column: 'payment_type');
+            $table->string(column: 'status')->default(value: 'pending');
+            $table->string(column: 'notes');
+            $table->string(column: 'updatedAt');
             $table->timestamps();
         });
     }

@@ -2,12 +2,15 @@
 
 // use App\Http\Controllers\Api\V1\NotificationController;
 // use App\Http\Controllers\WebNotificationController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+Route::post('/orders', [OrderController::class, 'store']);
 
 
 // Route::prefix('v1')->middleware(['throttle:myApi'])->group(function () {
