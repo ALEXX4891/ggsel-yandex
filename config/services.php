@@ -40,6 +40,7 @@ return [
         'business_id' => env('YANDEX_MARKET_BUSINESS_ID'),
         'campaign_id' => env('YANDEX_MARKET_CAMPAIGN_ID'),
         'api_key' => env('YANDEX_MARKET_API_KEY'),
+        'api_url' => env('YANDEX_MARKET_API_URL'),
     ],
 
 ];

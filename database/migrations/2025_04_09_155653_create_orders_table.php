@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create(table: 'orders', callback: function (Blueprint $table): void {
             $table->id();
-            $table->string(column: 'order_number')->unique();
             $table->string(column: 'shop');
-            $table->string(column: 'customer_name');
-            $table->string(column: 'customer_email');
-            $table->decimal(column: 'total_amount', total: 10, places: 2);
+            $table->string(column: 'order_number')->unique();
+            $table->string(column: 'buyer_id');
+            $table->string(column: 'buyer_name'); // ФИО
+            $table->decimal(column: 'buyer_total', total: 10, places: 2); //buyerTotal
+            $table->decimal(column: 'buyer_items_total', total: 10, places: 2);
             $table->string(column: 'creation_date');
             $table->string(column: 'currency');
             $table->boolean(column: 'fake')->default(value: false);
             $table->text(column: 'items')->nullable();
-            $table->decimal(column: 'items_total', total: 10, places: 2);
             $table->string(column: 'payment_method');
             $table->string(column: 'payment_type');
             $table->string(column: 'status')->default(value: 'pending');
